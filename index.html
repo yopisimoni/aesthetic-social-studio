@@ -14,6 +14,7 @@
   <title>Aesthetic Social Studio | Social Content for Clinics</title>
   <link rel="preconnect" href="https://images.pexels.com">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="trial.css">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -192,20 +193,36 @@
       </div>
     </section>
 
-    <section id="contact" class="section-shell final-cta">
+    <section id="contact" class="section-shell final-cta trial-section">
       <p class="eyebrow">Start your 3-post trial</p>
-      <h2>Your clinic already has expertise. Let the content reflect it.</h2>
-      <p>Tell us your clinic name, website or Instagram, and the main service or topic you want the sample to focus on.</p>
-      <div class="contact-card">
-        <div class="contact-email">
-          <span>Email</span>
-          <strong>aestheticsocialstudio.co@gmail.com</strong>
+      <h2>Tell us about your clinic. We’ll take it from there.</h2>
+      <p>This is the client-intake form. Newsletter signup is separate and does not start a project.</p>
+      <form class="trial-form" action="https://formsubmit.co/7bf54497e1267fa60846acee60aaa00c" method="POST">
+        <input type="hidden" name="_subject" value="NEW TRIAL LEAD — Aesthetic Social Studio">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="https://yopisimoni.github.io/aesthetic-social-studio/thank-you.html">
+        <input type="hidden" name="_autoresponse" value="Thanks for contacting Aesthetic Social Studio. We received your 3-post trial request. We’ll review your clinic, website or Instagram and come back with the next step. Please keep an eye on your inbox for a reply from aestheticsocialstudio.co@gmail.com.">
+        <input type="hidden" name="Lead source" value="Landing page — 3-post trial">
+
+        <div class="trial-grid">
+          <label>Your name<input type="text" name="Contact name" autocomplete="name" maxlength="100" required></label>
+          <label>Clinic name<input type="text" name="Clinic name" autocomplete="organization" maxlength="140" required></label>
+          <label>Email<input type="email" name="email" autocomplete="email" maxlength="180" required></label>
+          <label>Website or Instagram<input type="url" name="Website or Instagram" placeholder="https://..." maxlength="250" required></label>
+          <label class="trial-wide">Main service or topic<input type="text" name="Main service or topic" maxlength="180" placeholder="e.g. skin consultations, injectables, laser, facials" required></label>
+          <label class="trial-wide">What would you like help with?<textarea name="Project notes" rows="5" maxlength="1200" placeholder="Tell us what you want your social content to improve."></textarea></label>
         </div>
-        <div class="contact-actions">
-          <a class="button primary" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=aestheticsocialstudio.co@gmail.com&amp;su=3-post%20clinic%20trial&amp;body=Clinic%20name%3A%0AWebsite%20or%20Instagram%3A%0AMain%20service%20or%20topic%3A" target="_blank" rel="noopener noreferrer">Open Gmail</a>
-          <button class="button secondary copy-email" type="button" data-email="aestheticsocialstudio.co@gmail.com">Copy email</button>
-        </div>
-        <p class="contact-help">No Gmail? Copy the address and use any email provider.</p>
+
+        <label class="consent-row trial-consent"><input type="checkbox" name="Project contact consent" value="Yes" required><span>I agree that Aesthetic Social Studio may contact me about this trial request.</span></label>
+        <button class="button primary trial-submit" type="submit">Send my trial request</button>
+        <p class="form-note">After submitting, you’ll see a confirmation page and receive an email acknowledgement. We’ll receive the lead in the Aesthetic Social Studio inbox.</p>
+      </form>
+
+      <div class="contact-fallback">
+        <span>Prefer email?</span>
+        <strong>aestheticsocialstudio.co@gmail.com</strong>
+        <button class="button secondary copy-email" type="button" data-email="aestheticsocialstudio.co@gmail.com">Copy email</button>
         <p class="copy-status" aria-live="polite"></p>
       </div>
     </section>
