@@ -24,6 +24,21 @@ if (copyButton) {
   });
 }
 
+function removeLegacyFormSubmitFallback(form) {
+  if (!form) return;
+
+  // Forms are handled exclusively by Supabase. Remove the obsolete FormSubmit
+  // transport and metadata so no submission can be routed to FormSubmit after
+  // this script initializes.
+  form.removeAttribute('action');
+  form.removeAttribute('method');
+
+  const legacyFields = ['_subject', '_template', '_captcha', '_next', '_autoresponse'];
+  legacyFields.forEach((name) => {
+    form.querySelectorAll(`input[name="${name}"]`).forEach((field) => field.remove());
+  });
+}
+
 function addHoneypot(form) {
   if (!form || form.querySelector('input[name="_honey"]')) return;
   const honey = document.createElement('input');
@@ -89,10 +104,9 @@ const newsletterStatus = document.querySelector('.newsletter-status');
 const newsletterButton = document.querySelector('.newsletter-submit');
 
 if (newsletterForm) {
+  removeLegacyFormSubmitFallback(newsletterForm);
   addHoneypot(newsletterForm);
   addPrivacyLink(newsletterForm.querySelector('.form-note'));
-  newsletterForm.removeAttribute('action');
-  newsletterForm.removeAttribute('method');
 
   newsletterForm.addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -149,10 +163,9 @@ if (newsletterForm) {
 
 const trialForm = document.querySelector('.trial-form');
 if (trialForm) {
+  removeLegacyFormSubmitFallback(trialForm);
   addHoneypot(trialForm);
   addPrivacyLink(trialForm.querySelector('.form-note'));
-  trialForm.removeAttribute('action');
-  trialForm.removeAttribute('method');
 
   const websiteOrInstagram = trialForm.querySelector('input[name="Website or Instagram"]');
   if (websiteOrInstagram) {
