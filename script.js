@@ -19,3 +19,9 @@ if (copyButton) {
     }
   });
 }
+
+const params = new URLSearchParams(window.location.search);
+const newsletterStatus = document.querySelector('.newsletter-status');
+if (newsletterStatus && params.get('newsletter') === 'thanks') {
+  newsletterStatus.textContent = 'Thanks — your signup was submitted. Check your inbox for any confirmation message.';
+}
