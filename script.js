@@ -20,8 +20,50 @@ if (copyButton) {
   });
 }
 
-const params = new URLSearchParams(window.location.search);
+const newsletterForm = document.querySelector('.newsletter-form');
 const newsletterStatus = document.querySelector('.newsletter-status');
-if (newsletterStatus && params.get('newsletter') === 'thanks') {
-  newsletterStatus.textContent = 'Thanks — your signup was submitted. Check your inbox for any confirmation message.';
+const newsletterButton = document.querySelector('.newsletter-submit');
+
+if (newsletterForm) {
+  newsletterForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    if (!newsletterForm.checkValidity()) {
+      newsletterForm.reportValidity();
+      return;
+    }
+
+    const originalLabel = newsletterButton.textContent;
+    newsletterButton.disabled = true;
+    newsletterButton.textContent = 'Joining…';
+    newsletterStatus.textContent = '';
+
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/7bf54497e1267fa60846acee60aaa00c', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json'
+        },
+        body: new FormData(newsletterForm)
+      });
+
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok || data.success === false) {
+        throw new Error(data.message || 'Signup could not be completed.');
+      }
+
+      newsletterForm.reset();
+      newsletterStatus.textContent = 'You’re on the list — welcome to Clinic Content Notes.';
+      newsletterButton.textContent = 'Joined';
+      setTimeout(() => {
+        newsletterButton.textContent = originalLabel;
+        newsletterButton.disabled = false;
+      }, 2600);
+    } catch (error) {
+      newsletterStatus.textContent = 'Signup is temporarily unavailable. Please try again shortly.';
+      newsletterButton.textContent = originalLabel;
+      newsletterButton.disabled = false;
+    }
+  });
 }
