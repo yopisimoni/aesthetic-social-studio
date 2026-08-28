@@ -3,25 +3,34 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Aesthetic Social Studio creates refined social media content for aesthetic and skin clinics.">
+  <meta name="description" content="Aesthetic Social Studio creates refined social media content for aesthetic and skin clinics, including educational posts, captions, content planning and personalised trial concepts.">
   <meta name="theme-color" content="#f5efe9">
+  <meta property="og:title" content="Aesthetic Social Studio | Social Content for Clinics">
+  <meta property="og:description" content="Calm, credible and clinic-specific social content for aesthetic and skin clinics.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yopisimoni.github.io/aesthetic-social-studio/">
+  <meta name="twitter:card" content="summary">
+  <link rel="canonical" href="https://yopisimoni.github.io/aesthetic-social-studio/">
   <title>Aesthetic Social Studio | Social Content for Clinics</title>
   <link rel="preconnect" href="https://images.pexels.com">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
   <header class="site-header">
-    <a class="brand" href="#top"><span class="brand-mark">A</span><span>Aesthetic Social Studio</span></a>
-    <nav>
+    <a class="brand" href="#top" aria-label="Aesthetic Social Studio home"><span class="brand-mark">A</span><span>Aesthetic Social Studio</span></a>
+    <nav aria-label="Primary navigation">
       <a href="#work">Work</a>
       <a href="#services">Services</a>
       <a href="#process">Process</a>
+      <a href="#contact">Contact</a>
       <a class="nav-cta" href="#contact">Start a trial</a>
     </nav>
   </header>
 
-  <main id="top">
-    <section class="hero section-shell">
+  <main id="main">
+    <section id="top" class="hero section-shell">
       <div class="hero-copy">
         <p class="eyebrow">Social content for aesthetic &amp; skin clinics</p>
         <h1>Content that feels as refined as your clinic.</h1>
@@ -30,13 +39,13 @@
           <a class="button primary" href="#contact">Start with 3 posts</a>
           <a class="button secondary" href="#work">View sample work</a>
         </div>
-        <div class="mini-proof">
+        <div class="mini-proof" aria-label="Service strengths">
           <span>Clinic-specific</span><span>Educational first</span><span>UK-focused</span>
         </div>
       </div>
 
       <figure class="hero-visual">
-        <img src="https://images.pexels.com/photos/4586740/pexels-photo-4586740.jpeg?auto=compress&cs=tinysrgb&w=1400" alt="A professional skin consultation in a clinic" loading="eager">
+        <img src="https://images.pexels.com/photos/4586740/pexels-photo-4586740.jpeg?auto=compress&cs=tinysrgb&w=1400" alt="Professional clinic consultation" loading="eager" fetchpriority="high">
         <figcaption><strong>Trust-first content.</strong><span>Thoughtful visual direction for modern clinics.</span></figcaption>
       </figure>
     </section>
@@ -48,44 +57,70 @@
     <section id="work" class="section-shell section-block">
       <div class="section-heading split-heading">
         <div><p class="eyebrow">Selected concepts</p><h2>Built around each clinic, not a generic template.</h2></div>
-        <p>We study the clinic first, then shape the content angle, copy and visual direction around its positioning and audience.</p>
+        <p>Each sample below is displayed directly on this page, so clinics can review the thinking without opening Canva or signing into another service.</p>
       </div>
 
       <div class="portfolio-layout">
-        <article class="featured-work">
+        <article class="featured-work" id="skintap-sample">
           <div class="featured-copy">
             <span class="project-tag">Personalised concept • Skintap</span>
             <h3>Education that makes a first consultation feel clear, calm and approachable.</h3>
-            <p>A clinic-specific content concept built around consultation FAQs, trust and skin education rather than hard selling.</p>
-            <a class="text-link" href="https://www.canva.com/d/JXLeXkZyPQs6bcD" target="_blank" rel="noopener">View Skintap sample ↗</a>
+            <p>A clinic-specific concept built around consultation FAQs, trust and useful skin education rather than hard selling.</p>
+            <a class="text-link" href="#skintap-details">See concept details ↓</a>
           </div>
-          <div class="social-preview skintap-preview" aria-label="Stylised Skintap social post preview">
+          <div class="social-preview skintap-preview" aria-label="Skintap social post concept">
             <div class="preview-top"><span>SKINTAP</span><small>SOCIAL CONCEPT</small></div>
             <div class="preview-body"><span class="preview-index">01</span><h4>3 things to know before your first skin consultation</h4><p>Clear expectations. Honest guidance. A plan built around your skin.</p></div>
           </div>
         </article>
 
-        <article class="work-card prive-card">
+        <article class="work-card prive-card" id="prive-sample">
           <div class="card-number">02</div>
           <span class="project-tag">Privé Skin Clinic</span>
-          <h3>Natural results. Honest recommendations.</h3>
-          <p>A premium social concept designed around subtle outcomes and consultation-first communication.</p>
-          <a class="text-link" href="https://www.canva.com/d/EjryJacd8kVgnBu" target="_blank" rel="noopener">View Privé sample ↗</a>
+          <h3>Consultation-first. Honest recommendations.</h3>
+          <p>A premium concept designed around careful recommendations, subtle visual direction and patient-first communication.</p>
+          <a class="text-link" href="#prive-details">See concept details ↓</a>
         </article>
 
         <article class="work-card request-card">
           <div class="card-number">03</div>
           <span class="project-tag">Your clinic</span>
           <h3>Want to see your brand here?</h3>
-          <p>We can create a small concept around your services, visual language and most useful audience questions.</p>
+          <p>We can create a small concept around your services, visual language and the questions your audience actually asks.</p>
           <a class="text-link" href="#contact">Request a sample →</a>
+        </article>
+      </div>
+
+      <div class="case-study-grid" aria-label="Portfolio case study details">
+        <article class="case-study" id="skintap-details">
+          <div class="case-study-meta"><span>01</span><strong>Skintap</strong></div>
+          <h3>First-consultation educational post</h3>
+          <p class="case-study-intro">The content angle answers a simple concern before the client even books: what actually happens in a first consultation?</p>
+          <div class="concept-points">
+            <div><strong>1</strong><p>Understand the client’s skin needs and goals.</p></div>
+            <div><strong>2</strong><p>Discuss suitability and realistic options.</p></div>
+            <div><strong>3</strong><p>Build a personalised, honest plan — including when no treatment is the right recommendation.</p></div>
+          </div>
+          <div class="concept-caption">“Your first consultation is about understanding your skin, your goals and what’s genuinely suitable for you.”</div>
+        </article>
+
+        <article class="case-study" id="prive-details">
+          <div class="case-study-meta"><span>02</span><strong>Privé Skin Clinic</strong></div>
+          <h3>Consultation-first positioning concept</h3>
+          <p class="case-study-intro">The concept positions the consultation as professional guidance rather than pressure to choose a service immediately.</p>
+          <div class="concept-quote">Not every consultation needs a treatment.</div>
+          <div class="concept-points compact">
+            <div><strong>01</strong><p>Start with goals, not a menu of services.</p></div>
+            <div><strong>02</strong><p>Prioritise subtle, considered recommendations.</p></div>
+            <div><strong>03</strong><p>Sometimes the best recommendation is to wait.</p></div>
+          </div>
         </article>
       </div>
     </section>
 
     <section class="visual-story section-shell" aria-label="Clinic visual direction">
       <div class="visual-story-image">
-        <img src="https://images.pexels.com/photos/10521230/pexels-photo-10521230.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Clean modern aesthetic clinic interior" loading="lazy">
+        <img src="https://images.pexels.com/photos/10521230/pexels-photo-10521230.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Clean modern clinic interior" loading="lazy">
       </div>
       <div class="visual-story-copy">
         <p class="eyebrow">The visual standard</p>
@@ -112,36 +147,51 @@
       <div class="process-grid">
         <article><strong>01</strong><h3>We study your clinic</h3><p>Your positioning, services, visual direction and current social presence.</p></article>
         <article><strong>02</strong><h3>We shape the angle</h3><p>We choose content ideas that fit your actual audience and brand.</p></article>
-        <article><strong>03</strong><h3>We create &amp; refine</h3><p>Posts, captions and visual concepts are prepared for review and approval.</p></article>
+        <article><strong>03</strong><h3>We create &amp; refine</h3><p>Posts, captions and visual concepts are prepared for clinic review and approval.</p></article>
       </div>
     </section>
 
-    <section class="offer-section">
+    <section class="offer-section" aria-label="Starter offer">
       <div class="section-shell offer-inner">
         <div class="offer-copy"><p class="eyebrow">Start small</p><h2>Test the fit with 3 clinic-specific posts.</h2><p>See how your brand could look before moving into ongoing monthly content support.</p></div>
-        <div class="offer-card"><span>Starter monthly plan</span><div class="price">$350 <small>/ month</small></div><p>For clinics that want a consistent, professional social content presence.</p><ul><li>Clinic-specific content direction</li><li>Social post concepts</li><li>Caption support</li><li>Simple monthly planning</li></ul><a class="button light-button" href="#contact">Start with the 3-post trial</a></div>
+        <div class="offer-card">
+          <span>Starter monthly plan</span>
+          <div class="price">$350 <small>/ month</small></div>
+          <p>For clinics that want a consistent, professional social content presence.</p>
+          <ul><li>Clinic-specific content direction</li><li>Social post concepts</li><li>Caption support</li><li>Simple monthly planning</li></ul>
+          <a class="button light-button" href="#contact">Start with the 3-post trial</a>
+          <small class="pricing-note">The trial is intended to confirm creative fit before ongoing monthly work.</small>
+        </div>
       </div>
     </section>
 
     <section id="contact" class="section-shell final-cta">
       <p class="eyebrow">Start your 3-post trial</p>
       <h2>Your clinic already has expertise. Let the content reflect it.</h2>
-      <p>Tell us about your clinic and we’ll start with a focused sample concept.</p>
+      <p>Tell us your clinic name, website or Instagram, and the main service or topic you want the sample to focus on.</p>
       <div class="contact-card">
         <div class="contact-email">
           <span>Email</span>
           <strong>aestheticsocialstudio.co@gmail.com</strong>
         </div>
         <div class="contact-actions">
-          <a class="button primary" href="https://mail.google.com/mail/?view=cm&fs=1&to=aestheticsocialstudio.co@gmail.com&su=3-post%20clinic%20trial" target="_blank" rel="noopener">Open Gmail</a>
+          <a class="button primary" href="https://mail.google.com/mail/?view=cm&fs=1&to=aestheticsocialstudio.co@gmail.com&su=3-post%20clinic%20trial&body=Clinic%20name%3A%0AWebsite%20or%20Instagram%3A%0AMain%20service%20or%20topic%3A" target="_blank" rel="noopener noreferrer">Open Gmail</a>
           <button class="button secondary copy-email" type="button" data-email="aestheticsocialstudio.co@gmail.com">Copy email</button>
         </div>
+        <p class="contact-help">No Gmail? Copy the address and use any email provider.</p>
         <p class="copy-status" aria-live="polite"></p>
       </div>
     </section>
   </main>
 
-  <footer><div class="section-shell footer-inner"><span>© <span id="year"></span> Aesthetic Social Studio</span><span>Portfolio concepts are demonstration work and should be reviewed by each clinic before publication.</span></div></footer>
+  <footer>
+    <div class="section-shell footer-inner">
+      <div><strong>Aesthetic Social Studio</strong><span>Social content for aesthetic &amp; skin clinics.</span></div>
+      <div class="footer-links"><a href="#work">Work</a><a href="#services">Services</a><a href="#contact">Contact</a></div>
+      <span>© <span id="year"></span> Aesthetic Social Studio</span>
+    </div>
+    <div class="section-shell disclaimer">Portfolio concepts are demonstration work. Clinics should review and approve all content before publication.</div>
+  </footer>
   <script src="script.js"></script>
 </body>
 </html>
