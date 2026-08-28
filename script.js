@@ -20,11 +20,36 @@ if (copyButton) {
   });
 }
 
+function addHoneypot(form) {
+  if (!form || form.querySelector('input[name="_honey"]')) return;
+  const honey = document.createElement('input');
+  honey.type = 'text';
+  honey.name = '_honey';
+  honey.tabIndex = -1;
+  honey.autocomplete = 'off';
+  honey.setAttribute('aria-hidden', 'true');
+  honey.style.position = 'absolute';
+  honey.style.left = '-9999px';
+  form.appendChild(honey);
+}
+
+function addPrivacyLink(container) {
+  if (!container || container.querySelector('a[href="privacy.html"]')) return;
+  container.appendChild(document.createTextNode(' '));
+  const link = document.createElement('a');
+  link.href = 'privacy.html';
+  link.textContent = 'Privacy notice';
+  container.appendChild(link);
+}
+
 const newsletterForm = document.querySelector('.newsletter-form');
 const newsletterStatus = document.querySelector('.newsletter-status');
 const newsletterButton = document.querySelector('.newsletter-submit');
 
 if (newsletterForm) {
+  addHoneypot(newsletterForm);
+  addPrivacyLink(newsletterForm.querySelector('.form-note'));
+
   newsletterForm.addEventListener('submit', async (event) => {
     event.preventDefault();
 
@@ -66,4 +91,25 @@ if (newsletterForm) {
       newsletterButton.disabled = false;
     }
   });
+}
+
+const trialForm = document.querySelector('.trial-form');
+if (trialForm) {
+  addHoneypot(trialForm);
+  addPrivacyLink(trialForm.querySelector('.form-note'));
+
+  const websiteOrInstagram = trialForm.querySelector('input[name="Website or Instagram"]');
+  if (websiteOrInstagram) {
+    websiteOrInstagram.type = 'text';
+    websiteOrInstagram.placeholder = 'https://... or @clinicname';
+    websiteOrInstagram.inputMode = 'url';
+  }
+}
+
+const footerLinks = document.querySelector('.footer-links');
+if (footerLinks && !footerLinks.querySelector('a[href="privacy.html"]')) {
+  const privacyLink = document.createElement('a');
+  privacyLink.href = 'privacy.html';
+  privacyLink.textContent = 'Privacy';
+  footerLinks.appendChild(privacyLink);
 }
