@@ -1,5 +1,9 @@
 document.getElementById('year').textContent = new Date().getFullYear();
 
+const SUPABASE_URL = 'https://himqukzzshptwjhoryav.supabase.co';
+const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_w7gOzUZCERTZ4SMxmL1jcA_JcaVqxos';
+const LEADS_ENDPOINT = `${SUPABASE_URL}/rest/v1/leads`;
+
 const copyButton = document.querySelector('.copy-email');
 const copyStatus = document.querySelector('.copy-status');
 
@@ -42,6 +46,44 @@ function addPrivacyLink(container) {
   container.appendChild(link);
 }
 
+function getAttribution() {
+  const params = new URLSearchParams(window.location.search);
+  return {
+    utm_source: params.get('utm_source') || null,
+    utm_medium: params.get('utm_medium') || null,
+    utm_campaign: params.get('utm_campaign') || null,
+    utm_term: params.get('utm_term') || null,
+    utm_content: params.get('utm_content') || null,
+    referrer: document.referrer || null
+  };
+}
+
+async function saveLead(payload) {
+  const response = await fetch(LEADS_ENDPOINT, {
+    method: 'POST',
+    headers: {
+      'apikey': SUPABASE_PUBLISHABLE_KEY,
+      'Content-Type': 'application/json',
+      'Prefer': 'return=minimal'
+    },
+    body: JSON.stringify({
+      ...payload,
+      ...getAttribution()
+    })
+  });
+
+  if (!response.ok) {
+    let detail = '';
+    try {
+      const errorBody = await response.json();
+      detail = errorBody.message || errorBody.details || '';
+    } catch (_) {
+      detail = await response.text().catch(() => '');
+    }
+    throw new Error(detail || `Lead submission failed (${response.status}).`);
+  }
+}
+
 const newsletterForm = document.querySelector('.newsletter-form');
 const newsletterStatus = document.querySelector('.newsletter-status');
 const newsletterButton = document.querySelector('.newsletter-submit');
@@ -49,6 +91,8 @@ const newsletterButton = document.querySelector('.newsletter-submit');
 if (newsletterForm) {
   addHoneypot(newsletterForm);
   addPrivacyLink(newsletterForm.querySelector('.form-note'));
+  newsletterForm.removeAttribute('action');
+  newsletterForm.removeAttribute('method');
 
   newsletterForm.addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -58,25 +102,34 @@ if (newsletterForm) {
       return;
     }
 
+    if (newsletterForm.querySelector('input[name="_honey"]')?.value) {
+      newsletterForm.reset();
+      newsletterStatus.textContent = 'You’re on the list — welcome to Clinic Content Notes.';
+      return;
+    }
+
     const originalLabel = newsletterButton.textContent;
     newsletterButton.disabled = true;
     newsletterButton.textContent = 'Joining…';
     newsletterStatus.textContent = '';
 
     try {
-      const response = await fetch('https://formsubmit.co/ajax/7bf54497e1267fa60846acee60aaa00c', {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json'
-        },
-        body: new FormData(newsletterForm)
+      const name = newsletterForm.querySelector('input[name="First name"]').value.trim();
+      const clinic = newsletterForm.querySelector('input[name="Clinic name"]').value.trim();
+      const email = newsletterForm.querySelector('input[name="Email"]').value.trim();
+      const consent = newsletterForm.querySelector('input[name="Consent"]').checked;
+
+      await saveLead({
+        name,
+        email,
+        phone: null,
+        service_interest: 'Clinic Content Notes newsletter',
+        message: clinic ? `Clinic name: ${clinic}` : null,
+        source: 'aesthetic-social-studio-landing-page',
+        form_type: 'newsletter',
+        status: 'new',
+        consent
       });
-
-      const data = await response.json().catch(() => ({}));
-
-      if (!response.ok || data.success === false) {
-        throw new Error(data.message || 'Signup could not be completed.');
-      }
 
       newsletterForm.reset();
       newsletterStatus.textContent = 'You’re on the list — welcome to Clinic Content Notes.';
@@ -86,6 +139,7 @@ if (newsletterForm) {
         newsletterButton.disabled = false;
       }, 2600);
     } catch (error) {
+      console.error('Newsletter signup error:', error);
       newsletterStatus.textContent = 'Signup is temporarily unavailable. Please try again shortly.';
       newsletterButton.textContent = originalLabel;
       newsletterButton.disabled = false;
@@ -97,6 +151,8 @@ const trialForm = document.querySelector('.trial-form');
 if (trialForm) {
   addHoneypot(trialForm);
   addPrivacyLink(trialForm.querySelector('.form-note'));
+  trialForm.removeAttribute('action');
+  trialForm.removeAttribute('method');
 
   const websiteOrInstagram = trialForm.querySelector('input[name="Website or Instagram"]');
   if (websiteOrInstagram) {
@@ -104,6 +160,62 @@ if (trialForm) {
     websiteOrInstagram.placeholder = 'https://... or @clinicname';
     websiteOrInstagram.inputMode = 'url';
   }
+
+  const trialButton = trialForm.querySelector('.trial-submit');
+  const trialNote = trialForm.querySelector('.form-note');
+
+  trialForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    if (!trialForm.checkValidity()) {
+      trialForm.reportValidity();
+      return;
+    }
+
+    if (trialForm.querySelector('input[name="_honey"]')?.value) {
+      window.location.href = 'thank-you.html';
+      return;
+    }
+
+    const originalLabel = trialButton.textContent;
+    trialButton.disabled = true;
+    trialButton.textContent = 'Sending…';
+
+    try {
+      const name = trialForm.querySelector('input[name="Contact name"]').value.trim();
+      const clinic = trialForm.querySelector('input[name="Clinic name"]').value.trim();
+      const email = trialForm.querySelector('input[name="email"]').value.trim();
+      const website = trialForm.querySelector('input[name="Website or Instagram"]').value.trim();
+      const service = trialForm.querySelector('input[name="Main service or topic"]').value.trim();
+      const notes = trialForm.querySelector('textarea[name="Project notes"]').value.trim();
+      const consent = trialForm.querySelector('input[name="Project contact consent"]').checked;
+
+      await saveLead({
+        name,
+        email,
+        phone: null,
+        service_interest: service,
+        message: [
+          `Clinic name: ${clinic}`,
+          `Website or Instagram: ${website}`,
+          notes ? `Project notes: ${notes}` : null
+        ].filter(Boolean).join('\n'),
+        source: 'aesthetic-social-studio-landing-page',
+        form_type: 'trial',
+        status: 'new',
+        consent
+      });
+
+      window.location.href = 'thank-you.html';
+    } catch (error) {
+      console.error('Trial submission error:', error);
+      if (trialNote) {
+        trialNote.textContent = 'We couldn’t send your request right now. Please try again or email aestheticsocialstudio.co@gmail.com.';
+      }
+      trialButton.textContent = originalLabel;
+      trialButton.disabled = false;
+    }
+  });
 }
 
 const footerLinks = document.querySelector('.footer-links');
