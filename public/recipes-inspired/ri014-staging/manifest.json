@@ -8,7 +8,7 @@
         1000,
         1500
       ],
-      "sha256": "05f3c9cb2d511fddba9f827969373f99df496ea50fa1b2575390c6f1165f4697"
+      "sha256": "1e4354765841e6889cb0e84ca768a9fdf2cf5185debc12dee501ffba20dc03cf"
     },
     {
       "filename": "ri014_meta.png",
@@ -16,7 +16,7 @@
         1080,
         1350
       ],
-      "sha256": "09c3bb446f350b71d11872d44a53e43b3643b6c88649de5ae4c03320c06d5db9"
+      "sha256": "488558a3a52da0de6c3cdd71915db8e6e2a4440f703e7a5cf676e796831011e1"
     }
   ],
   "status": "STAGING_ONLY",
