@@ -1,0 +1,26 @@
+{
+  "content_id": "RI-014",
+  "source": "ri014_verified_food_only.png",
+  "assets": [
+    {
+      "filename": "ri014_pinterest.png",
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "sha256": "05f3c9cb2d511fddba9f827969373f99df496ea50fa1b2575390c6f1165f4697"
+    },
+    {
+      "filename": "ri014_meta.png",
+      "dimensions": [
+        1080,
+        1350
+      ],
+      "sha256": "09c3bb446f350b71d11872d44a53e43b3643b6c88649de5ae4c03320c06d5db9"
+    }
+  ],
+  "status": "STAGING_ONLY",
+  "public_hosting": "NOT_VERIFIED",
+  "approved": false,
+  "publish": false
+}
